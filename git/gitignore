@@ -1,0 +1,7 @@
+*.swp
+*.swo
+*.swn
+*.DS_Store
+.bundle
+
+.vimrc

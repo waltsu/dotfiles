@@ -1,0 +1,20 @@
+[user]
+	name = Valtteri Virtanen
+	email = valtteri.virtanen@gmail.com
+
+[alias]
+st = status
+dc = diff --cached
+d = diff
+l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+ll = log --graph --decorate --pretty=short --abbrev-commit
+g = grep --break --heading --line-number
+fez = fetch
+[core]
+excludesfile = /Users/waltsu/.git/gitignore
+editor = /usr/bin/vim
+
+[color]
+ui = true
+[push]
+	default = current
