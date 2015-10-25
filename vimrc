@@ -2,11 +2,11 @@ let mapleader=","
 
 filetype off                   " required for vundle
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Bundles
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'kchmck/vim-coffee-script.git'
@@ -17,6 +17,8 @@ Bundle 'godlygeek/tabular.git'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'tpope/vim-rails'
 Bundle 'mtscout6/vim-cjsx'
+
+call vundle#end()
 
 function! NumberToggle()
   if (&relativenumber == 1)
