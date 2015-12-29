@@ -44,3 +44,5 @@ export LC_ALL=fi_FI.UTF-8
 export LANG=fi_FI.UTF-8
 
 alias grb='for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r'
+
+eval "$(docker-machine env default)"
