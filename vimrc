@@ -17,6 +17,8 @@ Bundle 'godlygeek/tabular.git'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'tpope/vim-rails'
 Bundle 'mtscout6/vim-cjsx'
+Bundle 'mxw/vim-jsx'
+Bundle 'pangloss/vim-javascript'
 
 call vundle#end()
 
@@ -83,6 +85,7 @@ map <C-c> "+y<CR>
 
 " Config file for coffeelint in syntastic
 let g:syntastic_coffee_coffeelint_args="--csv -f ~/.coffeelint_config"
+let g:syntastic_python_flake8_args="--max-line-length=120"
 
 
 " Remove all html checkers because they validate over internet connection
@@ -128,3 +131,6 @@ function! ClearBuffers()
     execute 'tabnext' l:currentTab
   endtry
 endfunction
+
+let g:jsx_ext_required = 0
+let g:syntastic_javascript_checkers = ['jsxhint']
