@@ -20,6 +20,7 @@ Bundle 'mtscout6/vim-cjsx'
 Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
 Bundle 'thinca/vim-localrc'
+Bundle 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
@@ -135,3 +136,6 @@ endfunction
 
 let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['jsxhint']
+
+" Remove preview window from YCM
+set completeopt-=preview
