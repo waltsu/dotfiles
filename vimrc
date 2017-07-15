@@ -19,6 +19,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'mtscout6/vim-cjsx'
 Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
+Bundle 'thinca/vim-localrc'
 
 call vundle#end()
 
