@@ -8,8 +8,9 @@ dc = diff --cached
 d = diff
 l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 ll = log --graph --decorate --pretty=short --abbrev-commit
-g = grep --break --heading --line-number
+g = grep --break --heading --line-number --ignore-case
 fez = fetch
+wtfwid = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 [core]
 excludesfile = /Users/waltsu/.git/gitignore
 editor = /usr/bin/vim
@@ -18,3 +19,10 @@ editor = /usr/bin/vim
 ui = true
 [push]
 	default = current
+
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
