@@ -11,16 +11,19 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'kchmck/vim-coffee-script.git'
 Bundle 'scrooloose/nerdtree.git'
-Bundle 'scrooloose/syntastic.git'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'godlygeek/tabular.git'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'tpope/vim-rails'
 Bundle 'mtscout6/vim-cjsx'
-Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
-Bundle 'thinca/vim-localrc'
+Bundle 'mxw/vim-jsx'
+Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'Valloric/YouCompleteMe'
+Bundle "lepture/vim-jinja"
+Bundle "leafgarland/typescript-vim"
+Bundle "peitalin/vim-jsx-typescript"
+Bundle "w0rp/ale"
 
 call vundle#end()
 
@@ -36,14 +39,14 @@ filetype plugin indent on
 syntax on
 set relativenumber
 set expandtab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set smartindent
 set autoindent
-set bs=2
 set hlsearch
 set incsearch
+set backspace=2
 
 set background=dark
 colorscheme solarized
@@ -54,13 +57,7 @@ set secure
 
 nmap ,t :CtrlP<cr>
 
-nmap ,h :!haml % %<.html<cr>
-nmap ,s :!sass % %<.css<cr>
-nmap ,p :!python %<cr>
-"nmap ,n :!nosetests --nocapture<cr>
 nmap ,a :A<cr>
-nmap ,m :!make app<cr>
-nmap ,n :!make test<cr>
 nmap <F4> :NERDTree<cr>
 nmap <F5> :NERDTreeFind<cr>
 nmap <F6> :NERDTreeClose<cr>
@@ -68,19 +65,54 @@ nmap <F6> :NERDTreeClose<cr>
 nmap ,w :echo @%<cr>
 nmap ,j :%!python -m json.tool<cr>
 nmap ,f zfat
+nmap ,fj :set ft=jinja<cr>
 nnoremap <C-n> :call NumberToggle()<cr>
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 :nnoremap <F7> :buffers<CR>:buffer<Space>
 
+"In visual mode, search the selection with //
+vnoremap // y/<C-R>"<CR>
+
+"Fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>ga :Gcommit --amend<CR>
+nnoremap <leader>gt :Gcommit -v -q %<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gp :Ggrep<Space>
+nnoremap <leader>gm :Gmove<Space>
+nnoremap <leader>gb :Git branch<Space>
+
 map <Tab> :bnext<CR>
 map <S-Tab> :bprev<CR>
 
-set ttymouse=xterm2
-set mouse=v
+"YCM
+nnoremap <leader>d :YcmCompleter GoTo<CR>
+nnoremap <leader>r :YcmCompleter GoToReferences<CR>
+nnoremap <leader>i :YcmCompleter GoToInclude<CR>
+
+if !has('nvim')
+  set ttymouse=xterm2
+  set mouse=v
+endif
+
+if has('nvim')
+  set mouse=""
+  language en_US
+  set completeopt-=preview
+endif
 
 " Hilight trailing whitespaces
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :au BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
+
+" Hilight too long lines
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+match OverLength /\%119v.*/
 
 " Ctrl+c pastes visual to clipboard
 map <C-c> "+y<CR>
@@ -89,12 +121,14 @@ map <C-c> "+y<CR>
 let g:syntastic_coffee_coffeelint_args="--csv -f ~/.coffeelint_config"
 let g:syntastic_python_flake8_args="--max-line-length=120"
 
+" Sometimes vim get confused from initial hash in beginning of file so force
+" filetype to be python when the file ends with .py
+autocmd BufRead,BufNewFile *.py set filetype=python
 
-" Remove all html checkers because they validate over internet connection
-let g:syntastic_html_checkers=[]
-let g:syntastic_haml_checkers=[]
+" Disable some rules from flake8 checker
+let g:ale_python_flake8_args='--ignore=E301,W601,W191 --max-line-length=119'
 
-set wildignore+=*/build/*,*/bower_components/*
+set wildignore+=*/build/*,*/bower_components/*,*/public/*,*.pyi
 
 function! Coffee()
     nmap ,c :!coffee --compile %<cr>
@@ -136,6 +170,9 @@ endfunction
 
 let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['jsxhint']
+
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Remove preview window from YCM
 set completeopt-=preview
