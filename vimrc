@@ -9,21 +9,20 @@ call vundle#begin()
 Bundle 'VundleVim/Vundle.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'kchmck/vim-coffee-script.git'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'tpope/vim-fugitive.git'
-Bundle 'godlygeek/tabular.git'
-Bundle 'derekwyatt/vim-scala'
 Bundle 'tpope/vim-rails'
-Bundle 'mtscout6/vim-cjsx'
 Bundle 'pangloss/vim-javascript'
-Bundle 'mxw/vim-jsx'
-Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'Valloric/YouCompleteMe'
 Bundle "lepture/vim-jinja"
 Bundle "leafgarland/typescript-vim"
 Bundle "peitalin/vim-jsx-typescript"
 Bundle "w0rp/ale"
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'chemzqm/vim-jsx-improve'
+Bundle 'flowtype/vim-flow'
+Bundle 'junegunn/goyo.vim'
+Bundle 'jlanzarotta/bufexplorer'
 
 call vundle#end()
 
