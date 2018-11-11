@@ -57,9 +57,9 @@ set secure
 nmap ,t :CtrlP<cr>
 
 nmap ,a :A<cr>
-nmap <F4> :NERDTree<cr>
+nmap <F4> :NERDTreeClose<cr>
 nmap <F5> :NERDTreeFind<cr>
-nmap <F6> :NERDTreeClose<cr>
+nmap <F6> :NERDTree<cr>
 "nmap ,r :!python pingpongbot.py Bottitude boris.helloworldopen.fi 9090<cr>
 nmap ,w :echo @%<cr>
 nmap ,j :%!python -m json.tool<cr>
