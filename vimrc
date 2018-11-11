@@ -90,9 +90,20 @@ map <Tab> :bnext<CR>
 map <S-Tab> :bprev<CR>
 
 "YCM
-nnoremap <leader>d :YcmCompleter GoTo<CR>
+nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>r :YcmCompleter GoToReferences<CR>
 nnoremap <leader>i :YcmCompleter GoToInclude<CR>
+nnoremap <leader>j :YcmCompleter GetType<CR>
+
+" Override Ycm when using javascript
+au FileType javascript nnoremap <buffer> <leader>j :FlowType<CR>
+au FileType javascript nnoremap <buffer> <leader>d :FlowJumpToDef<CR>
+
+"BufExplorer
+nnoremap <leader>p :BufExplorer<CR>
+
+let g:flow#enable = 0
+let g:flow#omnifunc = 0
 
 if !has('nvim')
   set ttymouse=xterm2
@@ -109,16 +120,8 @@ endif
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :au BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
 
-" Hilight too long lines
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
-match OverLength /\%119v.*/
-
 " Ctrl+c pastes visual to clipboard
 map <C-c> "+y<CR>
-
-" Config file for coffeelint in syntastic
-let g:syntastic_coffee_coffeelint_args="--csv -f ~/.coffeelint_config"
-let g:syntastic_python_flake8_args="--max-line-length=120"
 
 " Sometimes vim get confused from initial hash in beginning of file so force
 " filetype to be python when the file ends with .py
@@ -126,6 +129,15 @@ autocmd BufRead,BufNewFile *.py set filetype=python
 
 " Disable some rules from flake8 checker
 let g:ale_python_flake8_args='--ignore=E301,W601,W191 --max-line-length=119'
+
+let g:ale_linters = {
+\   'typescript': ['tsserver'],
+\   'go': ['gofmt', 'golint', 'go vet', 'gotype', 'go build'],
+\   'javascript': ['eslint', 'flow'],
+\   'python': ['flake8']
+\}
+let g:ale_typescript_tslint_use_local_config = 1
+let g:ale_javascript_prettier_use_local_config = 1
 
 set wildignore+=*/build/*,*/bower_components/*,*/public/*,*.pyi
 
@@ -167,11 +179,28 @@ function! ClearBuffers()
   endtry
 endfunction
 
-let g:jsx_ext_required = 0
+function! WriteMode()
+  Goyo x30
+endfunction
+
+" Uncommenting this breaks JS indentation
+"let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['jsxhint']
 
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|vendor\|coverage\|dist'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=2000
 
 " Remove preview window from YCM
 set completeopt-=preview
+
+" Make sure editrconfig works nicely with fugitive and prevent loading any
+" remote editorconfigs
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:CommandTMaxFiles=50000
+
+augroup dockerfile
+  au!
+  autocmd BufNewFile,BufRead Dockerfile.*   set filetype=Dockerfile
+augroup END
