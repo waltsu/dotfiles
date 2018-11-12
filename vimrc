@@ -13,7 +13,6 @@ Bundle 'scrooloose/nerdtree.git'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'tpope/vim-rails'
 Bundle 'pangloss/vim-javascript'
-Bundle 'Valloric/YouCompleteMe'
 Bundle "lepture/vim-jinja"
 Bundle "leafgarland/typescript-vim"
 Bundle "peitalin/vim-jsx-typescript"
@@ -23,6 +22,7 @@ Bundle 'chemzqm/vim-jsx-improve'
 Bundle 'flowtype/vim-flow'
 Bundle 'junegunn/goyo.vim'
 Bundle 'jlanzarotta/bufexplorer'
+Bundle 'vim-airline/vim-airline'
 
 call vundle#end()
 
@@ -89,21 +89,32 @@ nnoremap <leader>gb :Git branch<Space>
 map <Tab> :bnext<CR>
 map <S-Tab> :bprev<CR>
 
-"YCM
-nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>r :YcmCompleter GoToReferences<CR>
-nnoremap <leader>i :YcmCompleter GoToInclude<CR>
-nnoremap <leader>j :YcmCompleter GetType<CR>
 
 " Override Ycm when using javascript
 au FileType javascript nnoremap <buffer> <leader>j :FlowType<CR>
 au FileType javascript nnoremap <buffer> <leader>d :FlowJumpToDef<CR>
 
-"BufExplorer
+" ALE configs for typescript
+autocmd FileType typescript nmap <buffer> <Leader>j :ALEHover<CR>
+autocmd FileType typescript nnoremap <buffer> <leader>d :ALEGoToDefinition<CR>
+autocmd FileType typescript nnoremap <buffer> <leader>r :ALEFindReferences<CR>
+
+" BufExplorer
 nnoremap <leader>p :BufExplorer<CR>
 
+" Flow
 let g:flow#enable = 0
 let g:flow#omnifunc = 0
+
+" Airline
+let g:airline_theme = 'dark'
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'y', 'z']
+    \ ]
+
+" ALE
+let g:ale_completion_enabled = 0
 
 if !has('nvim')
   set ttymouse=xterm2
