@@ -90,14 +90,20 @@ map <Tab> :bnext<CR>
 map <S-Tab> :bprev<CR>
 
 
-" Override Ycm when using javascript
+" Use vim-flow with javascript files
 au FileType javascript nnoremap <buffer> <leader>j :FlowType<CR>
 au FileType javascript nnoremap <buffer> <leader>d :FlowJumpToDef<CR>
+let g:javascript_plugin_flow = 1
 
 " ALE configs for typescript
 autocmd FileType typescript nmap <buffer> <Leader>j :ALEHover<CR>
 autocmd FileType typescript nnoremap <buffer> <leader>d :ALEGoToDefinition<CR>
 autocmd FileType typescript nnoremap <buffer> <leader>r :ALEFindReferences<CR>
+
+" ALE configs for typescript
+autocmd FileType go nmap <buffer> <Leader>j :ALEHover<CR>
+autocmd FileType go nnoremap <buffer> <leader>d :ALEGoToDefinition<CR>
+autocmd FileType go nnoremap <buffer> <leader>r :ALEFindReferences<CR>
 
 " BufExplorer
 nnoremap <leader>p :BufExplorer<CR>
@@ -143,7 +149,7 @@ let g:ale_python_flake8_args='--ignore=E301,W601,W191 --max-line-length=119'
 
 let g:ale_linters = {
 \   'typescript': ['tsserver'],
-\   'go': ['gofmt', 'golint', 'go vet', 'gotype', 'go build'],
+\   'go': ['gofmt', 'golint', 'go vet', 'gotype', 'go build', 'golangserver'],
 \   'javascript': ['eslint', 'flow'],
 \   'python': ['flake8']
 \}
@@ -199,12 +205,9 @@ endfunction
 let g:syntastic_javascript_checkers = ['jsxhint']
 
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|vendor\|coverage\|dist'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|vendor\|coverage\|dist$'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=2000
-
-" Remove preview window from YCM
-set completeopt-=preview
 
 " Make sure editrconfig works nicely with fugitive and prevent loading any
 " remote editorconfigs
