@@ -35,11 +35,10 @@ plugins=(git node npm bundler)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
 export PATH="/Users/waltsu/sdk/platform-tools:/Users/waltsu/sdk/tools:$PATH"
 export PATH="/usr/local/Cellar/git/2.14.1/bin:$PATH"
-export PATH="/Users/waltsu/.nodenv/shims:$PATH"
 export PATH="/Users/waltsu/workspace/go/bin:$PATH"
+export PATH="/Users/waltsu/.emacs.d/bin:$PATH"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export EDITOR=vim
@@ -60,7 +59,9 @@ alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 alias k="kubectl"
 alias fix_docker_clock="/usr/local/bin/docker run --rm --privileged --pid=host walkerlee/nsenter -t 1 -m -u -i -n ntpd -d -q -n -p `if [[ -f /etc/ntp.conf ]]; then cat /etc/ntp.conf | awk '{ print $2 }'; else echo 'pool.ntp.org'; fi`"
 alias npm_path='export PATH=$(npm bin):$PATH'
-alias mongo_connection='ssh -L 27016:localhost:27017 app99.smartly.io'
+alias mongo_connection='ssh -N -L 27016:localhost:27017 <SMARTLY_APP_HOST>'
+alias devbox_mongo_connection='kubectl port-forward mongodb-0 27017:27017'
+alias tunnel_kubectl='ssh -N -L 7443:<SMARTLY_KUBE_PROD_HOST>:6443 -L 7444:<SMARTLY_KUBE_DEV_HOST>:6443  <SMARTLY_BASTION_HOST>'
 
 prod-utils() {
   kubectl run -ti --rm --restart=Never utils-valtteri --image=wolt/utils --context=prod --image-pull-policy=Always -- bash
@@ -68,6 +69,13 @@ prod-utils() {
 
 dev-utils() {
   kubectl run -ti --rm --restart=Never utils-valtteri --image=wolt/utils --context=dev --image-pull-policy=Always -- bash
+}
+
+rename() {
+    for i in $1*
+    do
+        mv "$i" "${i/$1/$2}"
+    done
 }
 
 export CDPATH=.:~/workspace # Comma separated list
