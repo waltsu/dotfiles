@@ -61,7 +61,7 @@ alias fix_docker_clock="/usr/local/bin/docker run --rm --privileged --pid=host w
 alias npm_path='export PATH=$(npm bin):$PATH'
 alias mongo_connection='ssh -N -L 27016:localhost:27017 <SMARTLY_APP_HOST>'
 alias devbox_mongo_connection='kubectl port-forward mongodb-0 27017:27017'
-alias tunnel_kubectl='ssh -N -L 7443:<SMARTLY_KUBE_PROD_HOST>:6443 -L 7444:<SMARTLY_KUBE_DEV_HOST>:6443  <SMARTLY_BASTION_HOST>'
+alias tunnel_kubectl='ssh -N -L 7449:<SMARTLY_KUBE_PROD_HOST>:6443 <SMARTLY_BASTION_HOST>'
 
 prod-utils() {
   kubectl run -ti --rm --restart=Never utils-valtteri --image=wolt/utils --context=prod --image-pull-policy=Always -- bash
