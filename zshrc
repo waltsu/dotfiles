@@ -83,7 +83,7 @@ rename() {
 export CDPATH=.:~/workspace # Comma separated list
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use 10.11
+nvm use 12.16
 
 export GOPATH=/Users/waltsu/workspace/go
 eval "$(rbenv init -)"
