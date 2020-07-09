@@ -13,9 +13,13 @@ cocoapods
 composer
 coreutils
 curl-openssl
+dav1d
 dep
 devbox
+docbook
+docbook-xsl
 doctl
+emacs-plus@27
 ffmpeg
 flac
 fontconfig
@@ -27,9 +31,12 @@ gd
 gdbm
 gdk-pixbuf
 gettext
+ghostscript
 giflib
 glib
 gmp
+gnu-getopt
+gnu-sed
 gnuplot
 gnutls
 go
@@ -61,6 +68,8 @@ libffi
 libheif
 libiconv
 libidn
+libidn2
+liblqr
 libmetalink
 libogg
 libomp
@@ -76,6 +85,7 @@ libtasn1
 libtiff
 libtool
 libunistring
+libvidstab
 libvorbis
 libvpx
 libyaml
@@ -95,7 +105,6 @@ opencore-amr
 openexr
 openjpeg
 openldap
-openssl
 openssl@1.1
 opus
 p11-kit
@@ -108,10 +117,10 @@ pixman
 pkg-config
 postgresql
 pstree
-python
 python@2
 python@3.8
 qt
+rav1e
 rbenv
 readline
 redis
@@ -127,12 +136,14 @@ snappy
 socat
 speex
 sqlite
+srt
 sshfs
 sshuttle
 stern
 telepresence
 terraform
 tesseract
+texinfo
 the_silver_searcher
 theora
 tidy-html5
@@ -146,6 +157,7 @@ watchman
 webp
 x264
 x265
+xmlto
 xvid
 xz
 yamllint
