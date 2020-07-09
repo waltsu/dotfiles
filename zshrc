@@ -60,8 +60,8 @@ alias k="kubectl"
 alias fix_docker_clock="/usr/local/bin/docker run --rm --privileged --pid=host walkerlee/nsenter -t 1 -m -u -i -n ntpd -d -q -n -p `if [[ -f /etc/ntp.conf ]]; then cat /etc/ntp.conf | awk '{ print $2 }'; else echo 'pool.ntp.org'; fi`"
 alias npm_path='export PATH=$(npm bin):$PATH'
 alias mongo_connection='ssh -N -L 27016:localhost:27017 <SMARTLY_APP_HOST>'
-alias devbox_mongo_connection='kubectl port-forward mongodb-0 27017:27017'
 alias tunnel_kubectl='ssh -N -L 7449:<SMARTLY_KUBE_PROD_HOST>:6443 <SMARTLY_BASTION_HOST>'
+alias devbox_mongo_connection='kubectl port-forward mongodb-app-0 27017:27017'
 
 prod-utils() {
   kubectl run -ti --rm --restart=Never utils-valtteri --image=wolt/utils --context=prod --image-pull-policy=Always -- bash
