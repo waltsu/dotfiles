@@ -62,6 +62,8 @@ alias npm_path='export PATH=$(npm bin):$PATH'
 alias mongo_connection='ssh -N -L 27016:localhost:27017 <SMARTLY_APP_HOST>'
 alias tunnel_kubectl='ssh -N -L 7449:<SMARTLY_KUBE_PROD_HOST>:6443 <SMARTLY_BASTION_HOST>'
 alias devbox_mongo_connection='kubectl port-forward mongodb-app-0 27017:27017'
+alias devbox_changelog_mongo_connection='kubectl port-forward mongodb-changelog-0 27017:27017'
+alias possu_connection='kubectl port-forward -n pgpool $(get-pgpool-pod) 5431:5432'
 
 prod-utils() {
   kubectl run -ti --rm --restart=Never utils-valtteri --image=wolt/utils --context=prod --image-pull-policy=Always -- bash
