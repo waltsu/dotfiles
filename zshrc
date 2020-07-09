@@ -40,8 +40,10 @@ export PATH="/usr/local/Cellar/git/2.14.1/bin:$PATH"
 export PATH="/Users/waltsu/workspace/go/bin:$PATH"
 export PATH="/Users/waltsu/.emacs.d/bin:$PATH"
 
-export WORKON_HOME=$HOME/.virtualenvs
 export EDITOR=vim
+
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
 ulimit -n 1200
