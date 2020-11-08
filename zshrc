@@ -89,3 +89,5 @@ nvm use 12.16
 
 export GOPATH=/Users/waltsu/workspace/go
 eval "$(rbenv init -)"
+
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
