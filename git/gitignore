@@ -5,3 +5,7 @@
 .bundle
 
 .vimrc
+
+.cache
+
+.vscode
