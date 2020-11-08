@@ -8,6 +8,7 @@ autoconf
 brotli
 c-ares
 cairo
+cloudflared
 cmake
 cocoapods
 composer
@@ -33,6 +34,7 @@ gdk-pixbuf
 gettext
 ghostscript
 giflib
+git-quick-stats
 glib
 gmp
 gnu-getopt
@@ -103,6 +105,7 @@ node-build
 oniguruma
 opencore-amr
 openexr
+openjdk
 openjpeg
 openldap
 openssl@1.1
@@ -117,8 +120,10 @@ pixman
 pkg-config
 postgresql
 pstree
+python-yq
 python@2
 python@3.8
+python@3.9
 qt
 rav1e
 rbenv
@@ -151,10 +156,12 @@ torsocks
 tree
 unbound
 unixodbc
+v8@3.15
 vim
 watch
 watchman
 webp
+websocat
 x264
 x265
 xmlto
@@ -162,3 +169,4 @@ xvid
 xz
 yamllint
 yarn
+zstd
