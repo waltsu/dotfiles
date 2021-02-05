@@ -13,6 +13,7 @@ cmake
 cocoapods
 composer
 coreutils
+curl
 curl-openssl
 dav1d
 dep
@@ -145,6 +146,7 @@ srt
 sshfs
 sshuttle
 stern
+tcl-tk
 telepresence
 terraform
 tesseract
