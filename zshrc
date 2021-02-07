@@ -44,7 +44,9 @@ export EDITOR=vim
 
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+
+# TODO: Install virtualenv
+# source /usr/local/bin/virtualenvwrapper.sh
 
 ulimit -n 1200
 export SBT_OPTS=-XX:MaxPermSize=256m
@@ -57,7 +59,6 @@ alias gst='git status'
 
 alias pepify="pep8radius --in-place --ignore=E501,E128,E301,E303,E111,W601,W191"
 alias pepdiff="pep8radius --diff --ignore=E501,E128,E301,E303,E111,W601,W191"
-alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 alias k="kubectl"
 alias fix_docker_clock="/usr/local/bin/docker run --rm --privileged --pid=host walkerlee/nsenter -t 1 -m -u -i -n ntpd -d -q -n -p `if [[ -f /etc/ntp.conf ]]; then cat /etc/ntp.conf | awk '{ print $2 }'; else echo 'pool.ntp.org'; fi`"
 alias npm_path='export PATH=$(npm bin):$PATH'
