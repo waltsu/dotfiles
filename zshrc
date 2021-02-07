@@ -85,9 +85,10 @@ rename() {
 export CDPATH=.:~/workspace # Comma separated list
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use 12.16
+nvm use 12.20
 
 export GOPATH=/Users/waltsu/workspace/go
 eval "$(rbenv init -)"
 
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
